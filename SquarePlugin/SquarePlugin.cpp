@@ -1,14 +1,12 @@
-// CirclePlugin.cpp : Defines the exported functions for the DLL application.
+// SquarePlugin.cpp : Defines the exported functions for the DLL application.
 //
 
 #include "stdafx.h"
-
 #include "NXInterface.h"
-#include "CircleImplementation.h"
+#include "SquareImplementation.h"
 
 __declspec(dllexport) bool NXPluginImplementsInterface(const NXInterfaceID& interfaceToCheck)
 {
-	// This plugin only supports the one interface
 	if( interfaceToCheck == ShapePluginInterfaceID )
 		return true;
 
@@ -17,8 +15,8 @@ __declspec(dllexport) bool NXPluginImplementsInterface(const NXInterfaceID& inte
 
 __declspec(dllexport) NXInterface* NXPluginInstantiateInterface(const NXInterfaceID& interfaceToInstantiate)
 {
-	if( interfaceToInstantiate == ShapePluginInterfaceID )
-		return new CircleImplementation();
+	if (interfaceToInstantiate == ShapePluginInterfaceID)
+		return new SquareImplementation();
 
 	return 0;
 }

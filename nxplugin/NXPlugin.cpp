@@ -4,9 +4,9 @@
 NXPlugin::NXPlugin(void* dynamicLib, const char* pluginFileName)
 {
 	_dynamicLib = dynamicLib;
-	_ImplementsInterface = (ImplementsInterfaceProc)GetProcAddress((HMODULE)_dynamicLib, "NXPluginImplementsInterface");
-	_InstantiateInterface = (InstantiateInterfacePoc)GetProcAddress((HMODULE)_dynamicLib, "NXPluginInstantiateInterface");
-	_ReleaseInterface = (ReleaseInterfaceProc)GetProcAddress((HMODULE)_dynamicLib, "NXPluginReleaseInterface");
+	_ImplementsInterface = (ImplementsInterfaceProc)GetProcAddress((HMODULE)_dynamicLib, "?NXPluginImplementsInterface@@YA_NAEBU_NXInterfaceID@@@Z");
+	_InstantiateInterface = (InstantiateInterfacePoc)GetProcAddress((HMODULE)_dynamicLib, "?NXPluginInstantiateInterface@@YAPEAVNXInterface@@AEBU_NXInterfaceID@@@Z");
+	_ReleaseInterface = (ReleaseInterfaceProc)GetProcAddress((HMODULE)_dynamicLib, "?NXPluginReleaseInterface@@YAXPEAVNXInterface@@@Z");
 }
 
 NXPlugin::~NXPlugin()
@@ -97,7 +97,7 @@ NXPlugin* NXPlugin::Load(const char* pluginPath)
 		return 0;
 
 	// Make sure this is a valid nx plugin?
-	FARPROC addr = GetProcAddress(lib, "NXPluginImplementsInterface");
+	FARPROC addr = GetProcAddress(lib, "?NXPluginImplementsInterface@@YA_NAEBU_NXInterfaceID@@@Z");
 	if( addr == 0 )
 		return 0;
 

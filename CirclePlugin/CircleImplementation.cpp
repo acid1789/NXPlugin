@@ -18,11 +18,11 @@ const char* CircleImplementation::GetShapeName() const
 
 void CircleImplementation::DrawShape() const
 {
-	printf("            XXXX	   \n");
-	printf("		  XXX  XXX	   \n");
-	printf("		XXX      XXX   \n");
+	printf("            XXXX       \n");
+	printf("          XXX  XXX     \n");
+	printf("        XXX      XXX   \n");
 	printf("       XX          XX  \n");
-	printf("		XXX      XXX   \n");
-	printf("		  XXX  XXX	   \n");
-	printf("            XXXX	   \n");
+	printf("        XXX      XXX   \n");
+	printf("          XXX  XXX     \n");
+	printf("            XXXX       \n");
 }
