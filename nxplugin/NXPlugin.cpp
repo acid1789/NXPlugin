@@ -1,7 +1,7 @@
 #include "NXPluginSystem.h"
 #include <Windows.h>
 
-NXPlugin::NXPlugin(void* dynamicLib)
+NXPlugin::NXPlugin(void* dynamicLib, const char* pluginFileName)
 {
 	_dynamicLib = dynamicLib;
 	_ImplementsInterface = (ImplementsInterfaceProc)GetProcAddress((HMODULE)_dynamicLib, "NXPluginImplementsInterface");
@@ -98,5 +98,5 @@ NXPlugin* NXPlugin::Load(const char* pluginPath)
 	if( addr == 0 )
 		return 0;
 
-	return new NXPlugin(lib);
+	return new NXPlugin(lib, pluginFile);
 }

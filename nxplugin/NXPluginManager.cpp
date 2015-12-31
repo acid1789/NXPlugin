@@ -8,7 +8,7 @@ static std::vector<NXPlugin*> s_LoadedPlugins;
 
 NXInterfaceID NXPluginManager::NullInterface( 0, 0, 0, 0 );
 
-static bool IsZipFile(char* fileName)
+static bool IsZipFile(const char* fileName)
 {
 	return false;
 }
@@ -96,4 +96,19 @@ std::vector<const NXPlugin*> NXPluginManager::GetPlugins(const NXInterfaceID& im
 	}
 
 	return matchingPlugins;
+}
+
+const NXPlugin* NXPluginManager::ImportPlugin(const char* pluginZipFile)
+{
+	if( !IsZipFile(pluginZipFile) )
+		return;
+
+	// Unzip into plugins folder
+
+	// Load plugin
+	
+}
+
+void NXPluginManager::RemovePlugin(const NXPlugin* pluginToRemove)
+{
 }

@@ -8,7 +8,7 @@ typedef void (*ReleaseInterfaceProc)(NXInterface* interfaceToRelease);
 
 class NXPlugin
 {
-	NXPlugin(void* dynamicLibrary);
+	NXPlugin(void* dynamicLibrary, const char* pluginFileName);
 public:
 	~NXPlugin();
 
