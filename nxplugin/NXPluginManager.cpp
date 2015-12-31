@@ -10,7 +10,9 @@ NXInterfaceID NXPluginManager::NullInterface( 0, 0, 0, 0 );
 
 static bool IsZipFile(const char* fileName)
 {
-	return false;
+	char ext[_MAX_EXT];
+	_splitpath(fileName, 0, 0, 0, ext);
+	return _stricmp(ext, ".zip") == 0;
 }
 
 static void LoadPlugins()
@@ -27,10 +29,17 @@ static void LoadPlugins()
 		{
 			if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
-				// Load the plugin from the directory
-				NXPlugin* plugin = NXPlugin::Load(findData.cFileName);
-				if( plugin )
-					s_LoadedPlugins.push_back(plugin);
+				if (findData.cFileName[0] != '.')
+				{
+					// Load the plugin from the directory
+					char pluginPath[MAX_PATH];
+					strcpy(pluginPath, s_PluginDir);
+					strcat(pluginPath, "/");
+					strcat(pluginPath, findData.cFileName);
+					NXPlugin* plugin = NXPlugin::Load(pluginPath);
+					if (plugin)
+						s_LoadedPlugins.push_back(plugin);
+				}
 			}
 			else
 			{
@@ -101,11 +110,13 @@ std::vector<const NXPlugin*> NXPluginManager::GetPlugins(const NXInterfaceID& im
 const NXPlugin* NXPluginManager::ImportPlugin(const char* pluginZipFile)
 {
 	if( !IsZipFile(pluginZipFile) )
-		return;
+		return 0;
 
 	// Unzip into plugins folder
+	
 
 	// Load plugin
+	return 0;
 	
 }
 

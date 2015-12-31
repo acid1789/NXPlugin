@@ -66,7 +66,10 @@ bool LoadManifestFile(const char* manifestFileName, char* pluginFileName, size_t
 		size_t pathLen = strlen(pluginFileName);
 		size_t space = sizeofPluginFileName - pathLen;
 		if (space > len)
-			memcpy(pluginFileName + pathLen, fileData, len);		// Copy file data into the output path
+		{
+			memcpy(pluginFileName + pathLen, fileData, len + 1);		// Copy file data into the output path
+			retVal = true;
+		}
 
 		// Cleanup
 		free(fileData);
